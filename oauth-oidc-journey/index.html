@@ -230,7 +230,7 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 <li><strong>state</strong> - RECOMMENDED. Some value, used by client to track the user, auth service should include it in redirect response</li>
 </ul>
 <p>Example:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">GET /authorize?response_type=code&amp;client_id=s6BhdRkqt3&amp;state=xyz&amp;redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb HTTP/1.1
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">GET /authorize?response_type=code&amp;client_id=xxx&amp;state=xyz&amp;redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb HTTP/1.1
 Host: server.example.com</code></pre></div>
 <h3>4.1.2. Authorization Response</h3>
 <ul>
@@ -262,7 +262,7 @@ Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&amp;state=xy
 <p>Example:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">HTTP/1.1 302 Found
 Location: https://client.example.com/cb?error=access_denied&amp;state=xyz</code></pre></div>
-<h3>4.1.3.  Access Token Request</h3>
+<h3>4.1.3. Access Token Request</h3>
 <p>Exchange code or refresh token to access token</p>
 <ul>
 <li><strong>grant_type</strong> - REQUIRED. Value MUST be set to "authorization_code".</li>
@@ -346,7 +346,7 @@ Pragma: no-cache
 <li><strong>state</strong> - RECOMMENDED. state that will be passed to response</li>
 </ul>
 <p>Example:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">GET /authorize?response_type=token&amp;client_id=s6BhdRkqt3&amp;state=xyz&amp;redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb HTTP/1.1
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">GET /authorize?response_type=token&amp;client_id=xxx&amp;state=xyz&amp;redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb HTTP/1.1
 Host: server.example.com</code></pre></div>
 <h3>4.2.2. Access Token Response</h3>
 <ul>
@@ -400,7 +400,7 @@ Location: https://client.example.com/cb#error=access_denied&amp;state=xyz</code>
 
             Figure 5: Resource Owner Password Credentials Flow</code></pre></div>
 <h3>4.3.1. Authorization Request and Response</h3>
-<h3>4.3.2.  Access Token Request</h3>
+<h3>4.3.2. Access Token Request</h3>
 <ul>
 <li><strong>grant_type</strong> - REQUIRED. Value MUST be set to <code class="language-text">password</code>.</li>
 <li><strong>username</strong> - REQUIRED. The resource owner username.</li>
@@ -509,7 +509,7 @@ Pragma: no-cache
 <li><strong>error</strong> - REQUIRED. enum:
 <ul>
 <li>invalid_request - validation</li>
-<li>invalid_client - Client authentication failed (e.g., unknown client, no client authentication included, or unsupported authentication method).  The authorization server MAY return an HTTP 401 (Unauthorized) status code to indicate which HTTP authentication schemes are supported.  If the client attempted to authenticate via the "Authorization" request header field, the authorization server MUST respond with an HTTP 401 (Unauthorized) status code and include the "WWW-Authenticate" response header field matching the authentication scheme used by the client.</li>
+<li>invalid_client - Client authentication failed (e.g., unknown client, no client authentication included, or unsupported authentication method). The authorization server MAY return an HTTP 401 (Unauthorized) status code to indicate which HTTP authentication schemes are supported. If the client attempted to authenticate via the "Authorization" request header field, the authorization server MUST respond with an HTTP 401 (Unauthorized) status code and include the "WWW-Authenticate" response header field matching the authentication scheme used by the client.</li>
 <li>invalid_grant - The provided authorization grant (e.g., authorization code, resource owner credentials) or refresh token is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.</li>
 <li>unauthorized_client - The authenticated client is not authorized to use this authorization grant type.</li>
 <li>unsupported_grant_type - The authorization grant type is not supported by the authorization server.</li>
@@ -546,7 +546,7 @@ grant_type=refresh_token&amp;refresh_token=tGzv3JOkF0XG5Qx2TlKWIA</code></pre></
 <li>authenticate the client if client authentication is included and ensure that the refresh token was issued to the authenticated client, and</li>
 <li>validate the refresh token.</li>
 </ul>
-<p>The authorization server MAY issue a new refresh token, in which case the client MUST discard the old refresh token and replace it with the new refresh token.  The authorization server MAY revoke the old refresh token after issuing a new refresh token to the client.  If a new refresh token is issued, the refresh token scope MUST be identical to that of the refresh token included by the client in the request.</p>
+<p>The authorization server MAY issue a new refresh token, in which case the client MUST discard the old refresh token and replace it with the new refresh token. The authorization server MAY revoke the old refresh token after issuing a new refresh token to the client. If a new refresh token is issued, the refresh token scope MUST be identical to that of the refresh token included by the client in the request.</p>
 <h1>7. Accessing Protected Resources</h1>
 <h2>7.1. Access Token Types</h2>
 <p>Example bearer</p>
@@ -572,7 +572,7 @@ Authorization: MAC id="h480djs93hd8", nonce="274312:dj83hs9s", mac="kDZvddkndxvh
 <p>We should keep track client id to whom refresh token was issued</p>
 <p>Only via https</p>
 <p>Whenever client authenticated we must check if refresh token was issued for this client or not</p>
-<p>Example: For example, the authorization server could employ refresh token rotation in which a new refresh token is issued with every access token refresh response.  The previous refresh token is invalidated but retained by the authorization server.  If a refresh token is compromised and subsequently used by both the attacker and the legitimate client, one of them will present an invalidated refresh token, which will inform the authorization server of the breach.</p>
+<p>Example: For example, the authorization server could employ refresh token rotation in which a new refresh token is issued with every access token refresh response. The previous refresh token is invalidated but retained by the authorization server. If a refresh token is compromised and subsequently used by both the attacker and the legitimate client, one of them will present an invalidated refresh token, which will inform the authorization server of the breach.</p>
 <h2>10.5. Authorization Codes</h2>
 <p>Authorization codes MUST be short lived and single-use.</p>
 <h2>10.6. Authorization Code Redirection URI Manipulation</h2>
@@ -631,20 +631,20 @@ Authorization: MAC id="h480djs93hd8", nonce="274312:dj83hs9s", mac="kDZvddkndxvh
 </ul>
 <p>So I have filled up the registration form with minimal required fields and received identity for my client</p>
 <ul>
-<li>client_id: <code class="language-text">98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com</code></li>
-<li>client_secret: <code class="language-text">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</code></li>
+<li>client_id: <code class="language-text">hello.apps.googleusercontent.com</code></li>
+<li>client_secret: <code class="language-text">xxx</code></li>
 </ul>
 <h3>Authorization Code Grant</h3>
 <p>From 4.1.1 we know that it is required to pass <code class="language-text">response_type=code</code> and our client id, everything else is optional</p>
 <p>From discovery document we know the authorization endpoint</p>
 <p>So the end url we should open to user when he clicks login with button will be:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://accounts.google.com/o/oauth2/v2/auth?response_type=code&amp;client_id=98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com&amp;redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fcallback&amp;scope=email%20profile</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://accounts.google.com/o/oauth2/v2/auth?response_type=code&amp;client_id=hello.apps.googleusercontent.com&amp;redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fcallback&amp;scope=email%20profile</code></pre></div>
 <p>Notes: Google requires scope, so I have added email and profile</p>
 <p>Opening this link should show google login page, and after user logs in you will be redirected back to:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">http://localhost:5000/callback?code=4%2F0Adeu5BWehrhh2fFclFQn8_cwWuukfLYXMBVXAIsRNXgDbW66aAI39W-nDDL-EM7i-CoTqA&amp;scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&amp;authuser=0&amp;prompt=consent#</code></pre></div>
 <p>Now we can exchange received <code class="language-text">code</code> to <code class="language-text">access_token</code> by passing it to token endpoint we have found in discovery url</p>
 <p>From 4.1.3 we know that it is required to authenticate client by providing client id and password, also we need to pass code we received and redirect_uri that was used, so the request will be:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" "https://oauth2.googleapis.com/token" -d "code=4%2F0Adeu5BWehrhh2fFclFQn8_cwWuukfLYXMBVXAIsRNXgDbW66aAI39W-nDDL-EM7i-CoTqA&amp;client_id=98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com&amp;client_secret=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&amp;grant_type=authorization_code&amp;redirect_uri=http://localhost:5000/callback"</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" "https://oauth2.googleapis.com/token" -d "code=4%2F0Adeu5BWehrhh2fFclFQn8_cwWuukfLYXMBVXAIsRNXgDbW66aAI39W-nDDL-EM7i-CoTqA&amp;client_id=hello.apps.googleusercontent.com&amp;client_secret=xxx&amp;grant_type=authorization_code&amp;redirect_uri=http://localhost:5000/callback"</code></pre></div>
 <p>And indeed we received our response with access token</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"access_token"</span><span class="token operator">:</span> <span class="token string">"ya29.a0AfB_byD5HIEUFeALUFpqJ2AUM4tlbOioFuZeeftBvsh-8Y8Xl2dotb8xSwd10LN5iBOn2Lbbi2D0QftPKnJIqwaSJCBjJSBA8vtOMXDTanov19wvqKvHaOQHYgvcbp4_bSf2xpPOuaurqDzWaIuwObnGMgNXaCgYKAXISARASFQHsvYls1sBqtXDt-sJ6djCS_6ki6g0163"</span><span class="token punctuation">,</span>
@@ -999,9 +999,9 @@ https<span class="token punctuation">.</span><span class="token function">create
 </code></pre></div>
 <p>If everything fine, response will be something like:</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-  <span class="token property">"access_token"</span><span class="token operator">:</span><span class="token string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYWMiLCJuYmYiOjE2OTEzMDczMzMwNTIsImlhdCI6MTY5MTMwNzMzMzA4MiwiZXhwIjoxNjkxMzA3MzM2NjgyLCJpc3MiOiJodHRwczovL2F1dGgubG9jYWxob3N0LmRpcmVjdCIsImF1ZCI6IjEifQ.DcRud510QNoZCYGPVnoaZQEyKeD6oZyUa2PJt2onWeI"</span><span class="token punctuation">,</span>
-  <span class="token property">"token_type"</span><span class="token operator">:</span><span class="token string">"Bearer"</span><span class="token punctuation">,</span>
-  <span class="token property">"expires_in"</span><span class="token operator">:</span><span class="token number">3600</span>
+  <span class="token property">"access_token"</span><span class="token operator">:</span> <span class="token string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYWMiLCJuYmYiOjE2OTEzMDczMzMwNTIsImlhdCI6MTY5MTMwNzMzMzA4MiwiZXhwIjoxNjkxMzA3MzM2NjgyLCJpc3MiOiJodHRwczovL2F1dGgubG9jYWxob3N0LmRpcmVjdCIsImF1ZCI6IjEifQ.DcRud510QNoZCYGPVnoaZQEyKeD6oZyUa2PJt2onWeI"</span><span class="token punctuation">,</span>
+  <span class="token property">"token_type"</span><span class="token operator">:</span> <span class="token string">"Bearer"</span><span class="token punctuation">,</span>
+  <span class="token property">"expires_in"</span><span class="token operator">:</span> <span class="token number">3600</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>and our token holds</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
@@ -1627,20 +1627,13 @@ https<span class="token punctuation">.</span><span class="token function">create
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://auth.localhost.direct/.well-known/openid-configuration</code></pre></div>
 <p>and see</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-    <span class="token property">"issuer"</span><span class="token operator">:</span> <span class="token string">"https://auth.localhost.direct"</span><span class="token punctuation">,</span>
-    <span class="token property">"authorization_endpoint"</span><span class="token operator">:</span> <span class="token string">"https://auth.localhost.direct/authorization"</span><span class="token punctuation">,</span>
-    <span class="token property">"token_endpoint"</span><span class="token operator">:</span> <span class="token string">"https://auth.localhost.direct/token"</span><span class="token punctuation">,</span>
-    <span class="token property">"jwks_uri"</span><span class="token operator">:</span> <span class="token string">"https://auth.localhost.direct/jwks"</span><span class="token punctuation">,</span>
-    <span class="token property">"response_types_supported"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        <span class="token string">"code"</span><span class="token punctuation">,</span>
-        <span class="token string">"token"</span>
-    <span class="token punctuation">]</span><span class="token punctuation">,</span>
-    <span class="token property">"subject_types_supported"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        <span class="token string">"public"</span>
-    <span class="token punctuation">]</span><span class="token punctuation">,</span>
-    <span class="token property">"id_token_signing_alg_values_supported"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        <span class="token string">"RS256"</span>
-    <span class="token punctuation">]</span>
+  <span class="token property">"issuer"</span><span class="token operator">:</span> <span class="token string">"https://auth.localhost.direct"</span><span class="token punctuation">,</span>
+  <span class="token property">"authorization_endpoint"</span><span class="token operator">:</span> <span class="token string">"https://auth.localhost.direct/authorization"</span><span class="token punctuation">,</span>
+  <span class="token property">"token_endpoint"</span><span class="token operator">:</span> <span class="token string">"https://auth.localhost.direct/token"</span><span class="token punctuation">,</span>
+  <span class="token property">"jwks_uri"</span><span class="token operator">:</span> <span class="token string">"https://auth.localhost.direct/jwks"</span><span class="token punctuation">,</span>
+  <span class="token property">"response_types_supported"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"code"</span><span class="token punctuation">,</span> <span class="token string">"token"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"subject_types_supported"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"public"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"id_token_signing_alg_values_supported"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"RS256"</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>The idea behind this - our services will discover this endpoint, find jwks endpoint from it, read public keys and use them to verify incomming requests</p>
 <h1>JWKS Endpoint</h1>
@@ -2021,16 +2014,16 @@ https<span class="token punctuation">.</span><span class="token function">create
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://auth.localhost.direct/jwks</code></pre></div>
 <p>And see soemthing like</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-    <span class="token property">"keys"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        <span class="token punctuation">{</span>
-            <span class="token property">"kid"</span><span class="token operator">:</span> <span class="token string">"1"</span><span class="token punctuation">,</span>
-            <span class="token property">"kty"</span><span class="token operator">:</span> <span class="token string">"RSA"</span><span class="token punctuation">,</span>
-            <span class="token property">"alg"</span><span class="token operator">:</span> <span class="token string">"RS256"</span><span class="token punctuation">,</span>
-            <span class="token property">"use"</span><span class="token operator">:</span> <span class="token string">"sig"</span><span class="token punctuation">,</span>
-            <span class="token property">"n"</span><span class="token operator">:</span> <span class="token string">"t-WswdPi6x8mdO9kstaUB7SMRFRiIy2cRGrZt5soZJHPytfQtQ-uQksl5ksXj-Rqop2XdTpOkk0ktk2OpfHEbwOjAW-IRykC8wB9KGNaVNxB1Ox7IerBqi4S3AvdoYdDF2CanpTHlM_T3omBFccrWqonmZYpzEn2XlK6CoLICq9yyu2bLlgFGr863RXej6A4_MbT7MuJaFiyooEMfRaSgu0ajYMANl8Xb4zmJrgGGsF_sTf-GLKDH-CDWyO-yBn7vtwUzMEURl_NHpncHfzyIXjwxfCHmqileHfc_bBPa8bh2f0q7vtqJJi7_iFpAgMBAAE"</span><span class="token punctuation">,</span>
-            <span class="token property">"e"</span><span class="token operator">:</span> <span class="token string">"AQAB"</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">]</span>
+  <span class="token property">"keys"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"kid"</span><span class="token operator">:</span> <span class="token string">"1"</span><span class="token punctuation">,</span>
+      <span class="token property">"kty"</span><span class="token operator">:</span> <span class="token string">"RSA"</span><span class="token punctuation">,</span>
+      <span class="token property">"alg"</span><span class="token operator">:</span> <span class="token string">"RS256"</span><span class="token punctuation">,</span>
+      <span class="token property">"use"</span><span class="token operator">:</span> <span class="token string">"sig"</span><span class="token punctuation">,</span>
+      <span class="token property">"n"</span><span class="token operator">:</span> <span class="token string">"t-WswdPi6x8mdO9kstaUB7SMRFRiIy2cRGrZt5soZJHPytfQtQ-uQksl5ksXj-Rqop2XdTpOkk0ktk2OpfHEbwOjAW-IRykC8wB9KGNaVNxB1Ox7IerBqi4S3AvdoYdDF2CanpTHlM_T3omBFccrWqonmZYpzEn2XlK6CoLICq9yyu2bLlgFGr863RXej6A4_MbT7MuJaFiyooEMfRaSgu0ajYMANl8Xb4zmJrgGGsF_sTf-GLKDH-CDWyO-yBn7vtwUzMEURl_NHpncHfzyIXjwxfCHmqileHfc_bBPa8bh2f0q7vtqJJi7_iFpAgMBAAE"</span><span class="token punctuation">,</span>
+      <span class="token property">"e"</span><span class="token operator">:</span> <span class="token string">"AQAB"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
 <span class="token punctuation">}</span></code></pre></div>
 <h1>Auth Service</h1>
 <p>Now it is time to wireup everything into auth service</p>
@@ -2368,7 +2361,11 @@ https<span class="token punctuation">.</span><span class="token function">create
   --data-urlencode <span class="token string">"redirect_uri=https://spa.localhost.direct:4200/callback"</span> <span class="token punctuation">\</span>
   --data-urlencode <span class="token string">"client_id=1"</span></code></pre></div>
 <p>And response should be</p>
-<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"access_token"</span><span class="token operator">:</span><span class="token string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJSU0EyNTYifQ.eyJzdWIiOiJoZWxsbyIsIm5iZiI6MTY5MTMxNTIxODMwMSwiaWF0IjoxNjkxMzE1MjE4MzMxLCJleHAiOjE2OTEzMTUyMjE5MzEsImlzcyI6Imh0dHBzOi8vYXV0aC5sb2NhbGhvc3QuZGlyZWN0IiwiYXVkIjoiMSJ9.imetzopnd046Yx8nVKfpVTJxPEQbd7F85pZUC2ZgzlvohHrS1cR0utqrWL7LKqG7jLJhzO3yiIEwBHoQI9Z2FUWByXHTbmQHn7TA89LYEEcCLQa4bX1o50Vu8bM8mT4VMK9Gk_SDjv2fLqEmoiUs8SsTn24TN2K-Q1NtieuJUPhCS2gT3wgLkZjSBvgd3AHQ0GZkPnpKKOwn2NY7v1PJrp6oJlquYWXCbTms2CL0LaxbolSmxbDNgKcd6BekqpJHw8IiKAO_I5f3jz0lKJFn6Z5pPkAidqdmM8Q6ZocRDNajcnuAU3WQYUjnzkZviXxK-7uF3ChKx6Qp77Ceawc0Nw"</span><span class="token punctuation">,</span><span class="token property">"token_type"</span><span class="token operator">:</span><span class="token string">"Bearer"</span><span class="token punctuation">,</span><span class="token property">"expires_in"</span><span class="token operator">:</span><span class="token number">3600</span><span class="token punctuation">}</span></code></pre></div>
+<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"access_token"</span><span class="token operator">:</span> <span class="token string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJSU0EyNTYifQ.eyJzdWIiOiJoZWxsbyIsIm5iZiI6MTY5MTMxNTIxODMwMSwiaWF0IjoxNjkxMzE1MjE4MzMxLCJleHAiOjE2OTEzMTUyMjE5MzEsImlzcyI6Imh0dHBzOi8vYXV0aC5sb2NhbGhvc3QuZGlyZWN0IiwiYXVkIjoiMSJ9.imetzopnd046Yx8nVKfpVTJxPEQbd7F85pZUC2ZgzlvohHrS1cR0utqrWL7LKqG7jLJhzO3yiIEwBHoQI9Z2FUWByXHTbmQHn7TA89LYEEcCLQa4bX1o50Vu8bM8mT4VMK9Gk_SDjv2fLqEmoiUs8SsTn24TN2K-Q1NtieuJUPhCS2gT3wgLkZjSBvgd3AHQ0GZkPnpKKOwn2NY7v1PJrp6oJlquYWXCbTms2CL0LaxbolSmxbDNgKcd6BekqpJHw8IiKAO_I5f3jz0lKJFn6Z5pPkAidqdmM8Q6ZocRDNajcnuAU3WQYUjnzkZviXxK-7uF3ChKx6Qp77Ceawc0Nw"</span><span class="token punctuation">,</span>
+  <span class="token property">"token_type"</span><span class="token operator">:</span> <span class="token string">"Bearer"</span><span class="token punctuation">,</span>
+  <span class="token property">"expires_in"</span><span class="token operator">:</span> <span class="token number">3600</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>And our access token contains</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"sub"</span><span class="token operator">:</span> <span class="token string">"hello"</span><span class="token punctuation">,</span>
@@ -2454,7 +2451,7 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 <p>It was almost working but I receive an verification error suggesting to read</p>
 <p><a href="https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/wiki/SecurityTokenInvalidSignatureException:-IDX10511">https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/wiki/SecurityTokenInvalidSignatureException:-IDX10511</a></p>
 <p>After a while it seems that my attempts of extracting module and exponent were incorrect but thankfully node has built in functionality for this</p>
-<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">crypto<span class="token punctuation">.</span><span class="token function">createPublicKey</span><span class="token punctuation">(</span>publicKey<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">export</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">format</span><span class="token operator">:</span> <span class="token string">'jwk'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">crypto<span class="token punctuation">.</span><span class="token function">createPublicKey</span><span class="token punctuation">(</span>publicKey<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">export</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">format</span><span class="token operator">:</span> <span class="token string">"jwk"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>will give us</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"kty"</span><span class="token operator">:</span> <span class="token string">"RSA"</span><span class="token punctuation">,</span>
@@ -2509,7 +2506,7 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 <li><code class="language-text">phone</code> - optional, <code class="language-text">phone_number</code> and <code class="language-text">phone_number_verified</code></li>
 </ul>
 <p>Note: all this is passed with <code class="language-text">id_token</code>, not <code class="language-text">access_token</code> here is our Google example revisited</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://accounts.google.com/o/oauth2/v2/auth?response_type=code&amp;client_id=98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com&amp;redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fcallback&amp;scope=openid%20%20profile%20email%20address%20phone</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://accounts.google.com/o/oauth2/v2/auth?response_type=code&amp;client_id=hello.apps.googleusercontent.com&amp;redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fcallback&amp;scope=openid%20%20profile%20email%20address%20phone</code></pre></div>
 <p>Note: we asced for <code class="language-text">openid</code>, <code class="language-text">profile</code>, <code class="language-text">email</code>, <code class="language-text">address</code> and <code class="language-text">phone</code> scopes</p>
 <p>Responds with:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">http://localhost:5000/callback?code=4%2F0Adeu5BW_sYQH2snUfhgc9r-xVbEkYyp0Br0_dffXV2io87Z61sNnOrCAsrd4f48qDQpaeQ&amp;scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&amp;authuser=0&amp;prompt=consent#</code></pre></div>
@@ -2518,19 +2515,19 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-X</span> POST <span class="token string">"https://oauth2.googleapis.com/token"</span> <span class="token punctuation">\</span>
   <span class="token parameter variable">-H</span> <span class="token string">"Content-Type: application/x-www-form-urlencoded"</span> <span class="token punctuation">\</span>
   --data-urlencode <span class="token string">"code=4%2F0Adeu5BW_sYQH2snUfhgc9r-xVbEkYyp0Br0_dffXV2io87Z61sNnOrCAsrd4f48qDQpaeQ"</span> <span class="token punctuation">\</span>
-  --data-urlencode <span class="token string">"client_id=98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com"</span> <span class="token punctuation">\</span>
-  --data-urlencode <span class="token string">"client_secret=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"</span> <span class="token punctuation">\</span>
+  --data-urlencode <span class="token string">"client_id=hello.apps.googleusercontent.com"</span> <span class="token punctuation">\</span>
+  --data-urlencode <span class="token string">"client_secret=xxx"</span> <span class="token punctuation">\</span>
   --data-urlencode <span class="token string">"grant_type=authorization_code"</span> <span class="token punctuation">\</span>
   --data-urlencode <span class="token string">"redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fcallback"</span></code></pre></div>
 <p>But Google will complain that: You can't sign in to this app because it doesn't comply with Google's OAuth 2.0 policy for keeping apps secure.</p>
 <p>So I have reduced number of scopes, added them to app, published app and finally it worked out:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://accounts.google.com/o/oauth2/v2/auth?response_type=code&amp;client_id=98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Fmac-blog.org.ua%2Fcallback&amp;scope=openid%20profile%20email&amp;state=state&amp;nonce=nonce</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://accounts.google.com/o/oauth2/v2/auth?response_type=code&amp;client_id=hello.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Fmac-blog.org.ua%2Fcallback&amp;scope=openid%20profile%20email&amp;state=state&amp;nonce=nonce</code></pre></div>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://mac-blog.org.ua/callback?state=state&amp;code=4%2F0Adeu5BWxpzHn1HEMpqw7nlR7CZxL0PcCEcKvaOU-gz6EzjMtjAqwEgQlWFY6XQSv4RjsEg&amp;scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&amp;authuser=0&amp;prompt=none#</code></pre></div>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-X</span> POST <span class="token string">"https://oauth2.googleapis.com/token"</span> <span class="token punctuation">\</span>
   <span class="token parameter variable">-H</span> <span class="token string">"Content-Type: application/x-www-form-urlencoded"</span> <span class="token punctuation">\</span>
   <span class="token parameter variable">-d</span> <span class="token string">"code=4%2F0Adeu5BWxpzHn1HEMpqw7nlR7CZxL0PcCEcKvaOU-gz6EzjMtjAqwEgQlWFY6XQSv4RjsEg"</span> <span class="token punctuation">\</span>
-  <span class="token parameter variable">-d</span> <span class="token string">"client_id=98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com"</span> <span class="token punctuation">\</span>
-  <span class="token parameter variable">-d</span> <span class="token string">"client_secret=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"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-d</span> <span class="token string">"client_id=hello.apps.googleusercontent.com"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-d</span> <span class="token string">"client_secret=xxx"</span> <span class="token punctuation">\</span>
   <span class="token parameter variable">-d</span> <span class="token string">"grant_type=authorization_code"</span> <span class="token punctuation">\</span>
   <span class="token parameter variable">-d</span> <span class="token string">"redirect_uri=https%3A%2F%2Fmac-blog.org.ua%2Fcallback"</span></code></pre></div>
 <p>response is:</p>
@@ -2545,8 +2542,8 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 <p>id token</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"iss"</span><span class="token operator">:</span> <span class="token string">"https://accounts.google.com"</span><span class="token punctuation">,</span>
-  <span class="token property">"azp"</span><span class="token operator">:</span> <span class="token string">"98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com"</span><span class="token punctuation">,</span>
-  <span class="token property">"aud"</span><span class="token operator">:</span> <span class="token string">"98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com"</span><span class="token punctuation">,</span>
+  <span class="token property">"azp"</span><span class="token operator">:</span> <span class="token string">"hello.apps.googleusercontent.com"</span><span class="token punctuation">,</span>
+  <span class="token property">"aud"</span><span class="token operator">:</span> <span class="token string">"hello.apps.googleusercontent.com"</span><span class="token punctuation">,</span>
   <span class="token property">"sub"</span><span class="token operator">:</span> <span class="token string">"114259064191790696813"</span><span class="token punctuation">,</span>
   <span class="token property">"email"</span><span class="token operator">:</span> <span class="token string">"marchenko.alexandr@gmail.com"</span><span class="token punctuation">,</span>
   <span class="token property">"email_verified"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
@@ -2621,15 +2618,15 @@ console<span class="token punctuation">.</span><span class="token function">log<
 }
 */</span></code></pre></div></p>
 <p>Just from curiosity, if we will try <code class="language-text">response_type=code id_token</code></p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://accounts.google.com/o/oauth2/v2/auth?response_type=code%20id_token&amp;client_id=98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Fmac-blog.org.ua%2Fcallback&amp;scope=openid%20profile%20email&amp;state=state&amp;nonce=nonce</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://accounts.google.com/o/oauth2/v2/auth?response_type=code%20id_token&amp;client_id=hello.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Fmac-blog.org.ua%2Fcallback&amp;scope=openid%20profile%20email&amp;state=state&amp;nonce=nonce</code></pre></div>
 <p>Response will be</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://mac-blog.org.ua/callback#state=state&amp;code=4/0Adeu5BX4aWtmO8bYiaMIUwmMM9Fz1zICN54h10SNzory-IrQYFxU0h81sh-r3vSEQcL5jw&amp;scope=email%20profile%20openid%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&amp;id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxMWUzOWUyNzkyOGFlOWYxZTlkMWUyMTY0NmRlOTJkMTkzNTFiNDQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5ODQ0NzgyNzI1Mi1sMDlzOGhvZnAwZWs2dHNoaG5jNWw5M2U3MWxpNW12di5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6Ijk4NDQ3ODI3MjUyLWwwOXM4aG9mcDBlazZ0c2hobmM1bDkzZTcxbGk1bXZ2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0MjU5MDY0MTkxNzkwNjk2ODEzIiwiZW1haWwiOiJtYXJjaGVua28uYWxleGFuZHJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImNfaGFzaCI6ImJRdkJnSFB5OGVYOWYwVkxiQ04zMmciLCJub25jZSI6Im5vbmNlIiwibmJmIjoxNjkxMzMxNzM3LCJuYW1lIjoiQWxleGFuZHIgTWFyY2hlbmtvIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FBY0hUdGRZNFdHb2h6TlM1dklob2d4QXlpVG1rRG9zYUtjLTQwVmhUbDVFRjhqbl9qdz1zOTYtYyIsImdpdmVuX25hbWUiOiJBbGV4YW5kciIsImZhbWlseV9uYW1lIjoiTWFyY2hlbmtvIiwibG9jYWxlIjoiZW4iLCJpYXQiOjE2OTEzMzIwMzcsImV4cCI6MTY5MTMzNTYzNywianRpIjoiOGZjOTYxMDczOTRhMDg0ZDU2M2ZhZWU4MzdmOTFjZWNkMzIyYzRlZiJ9.J9dJpPYLoOMDdQtjIVuGUJ-jHBRpaNDCbtKpSnb32zVIeOBMW49l6OzXKPXbRMfRwA8esfErePvbHc0J981JJJZNJWREhvj5d7rZIVestaTWzl4KqaIiu9Qj9HBAlQSU_SVLPEKXkFbMHFEQder7nBbZvKx1C9A8xyKflzpYiffJnrmsYM07UjrCTXZXPVZjfMFr1i1NiSadZgv2gbaM5cHFHsiinIo4jL2umoWMyBdPTYxRw9RIIJasAAj3IwKSOrGgWE_CsTvd_PEbYqNYNL5sYs2NHWqgMfOY8DJJF9rcIYHn1whH0EEqIsYay2KWUA5nfIpol-zyOtQPkAhOqQ&amp;authuser=0&amp;prompt=none</code></pre></div>
 <p>Note how <code class="language-text">id_token</code> is passed in query string as well</p>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-X</span> POST <span class="token string">"https://oauth2.googleapis.com/token"</span> <span class="token punctuation">\</span>
   <span class="token parameter variable">-H</span> <span class="token string">"Content-Type: application/x-www-form-urlencoded"</span> <span class="token punctuation">\</span>
   <span class="token parameter variable">-d</span> <span class="token string">"code=4/0Adeu5BX4aWtmO8bYiaMIUwmMM9Fz1zICN54h10SNzory-IrQYFxU0h81sh-r3vSEQcL5jw"</span> <span class="token punctuation">\</span>
-  <span class="token parameter variable">-d</span> <span class="token string">"client_id=98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com"</span> <span class="token punctuation">\</span>
-  <span class="token parameter variable">-d</span> <span class="token string">"client_secret=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"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-d</span> <span class="token string">"client_id=hello.apps.googleusercontent.com"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-d</span> <span class="token string">"client_secret=xxx"</span> <span class="token punctuation">\</span>
   <span class="token parameter variable">-d</span> <span class="token string">"grant_type=authorization_code"</span> <span class="token punctuation">\</span>
   <span class="token parameter variable">-d</span> <span class="token string">"redirect_uri=https%3A%2F%2Fmac-blog.org.ua%2Fcallback"</span></code></pre></div>
 <p>And exchange endpoint returns the same, so this id token in query string may be used to immediatelly get some basic user info as well as validating access token after exchange</p>
@@ -3122,7 +3119,7 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 <p>Notes:</p>
 <ul>
 <li>now our access token has <code class="language-text">scope</code> claim</li>
-<li>our comments service has few new endpoints, each requires authentication and can be called only if  access token has required scope</li>
+<li>our comments service has few new endpoints, each requires authentication and can be called only if access token has required scope</li>
 <li>it requires little bit more checks for cases when there is more than one scope</li>
 <li>auth service knows the audience and as a result can filter scopes if needed</li>
 <li>even so it seems little bit harder than roles still it is a way to go because of the specs</li>
@@ -3187,7 +3184,7 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 <p>OIDC on the other hand has dedicated <code class="language-text">offline_access</code> scope for this - <a href="https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess">link</a></p>
 <p>So as soon as you add this scope in response you will receive desired <code class="language-text">refresh_token</code></p>
 <p>Let's see how it works in Google</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://accounts.google.com/o/oauth2/v2/auth?response_type=code&amp;client_id=98447827252-l09s8hofp0ek6tshhnc5l93e71li5mvv.apps.googleusercontent.com&amp;redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fcallback&amp;scope=email%20profile%20offline_access</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://accounts.google.com/o/oauth2/v2/auth?response_type=code&amp;client_id=hello.apps.googleusercontent.com&amp;redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fcallback&amp;scope=email%20profile%20offline_access</code></pre></div>
 <p>And it does not work, because Google does not have such scope, we can verify it in discovery document:</p>
 <p><a href="https://accounts.google.com/.well-known/openid-configuration">https://accounts.google.com/.well-known/openid-configuration</a></p>
 <p>It has only 3 supported scopes: openid, email and profile</p>
@@ -3196,7 +3193,7 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 <p><a href="https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration">https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration</a></p>
 <p>Does contain <code class="language-text">offline_access</code> in scopes</p>
 <p>So having sample azure app registration we should be able to ask for refresh token:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://login.microsoftonline.com/695e64b5-2d13-4ea8-bb11-a6fda2d60c41/oauth2/v2.0/authorize?response_type=code&amp;client_id=1543f1b8-1840-4574-aa44-2e383cdd2652&amp;redirect_uri=http%3A%2F%2Flocalhost&amp;scope=openid%20email%20profile%20offline_access</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://login.microsoftonline.com/695e64b5-2d13-4ea8-bb11-a6fda2d60c41/oauth2/v2.0/authorize?response_type=code&amp;client_id=xxx&amp;redirect_uri=http%3A%2F%2Flocalhost&amp;scope=openid%20email%20profile%20offline_access</code></pre></div>
 <p>Notes:</p>
 <ul>
 <li>request is completely the same as we tried with Google</li>
@@ -3205,16 +3202,16 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 <p>Redirected to</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">http://localhost/?code=0.AR8AtWReaRMtqE67Eab9otYMQbjxQxVAGHRFqkQuODzdJlKFAJw.AgABAAIAAAAtyolDObpQQ5VtlI4uGjEPAgDs_wUA9P9_axhpe6eLGXQU4bdMlaQBZdy7S0ZKStzY6JDORF4QDnx5rjfkNu7rE2hmkyTQQ8zQ_gVsvB4V7p3mAgjuymJAj2YOgvZHXIxnoOK_h3PYN9kpdZEjc27EZKC74HtFfjCiG1zBa_vbe9rz6KQiemuKOeuTQrKMAwMsnl7D4maQvtMi_mdYaHlSQrfliZaCbG_zankxv5suj5FG8ZrS6b5XofqwxnUVXfWyQEX2_spEOpt2grlRvcr4oyj3Y0pybhDn3TiqQjDEIxwaEJb7ixk0CGTWLl0JdCHNsTwi1x7oLWj7qukki4HAMNPolKvbicmgu0zswaynuuYg16jINF9uElSMdAzTShmT-k1rfDWWWrFnpB_TCFH3TGb5c3WRM0Iek1ZKtjaNBRn097fJjYk272lfOwTzn8SmbWrL1YAzvkSub6PBDaCoZC59bT2NQmTJuYiFS4lxzzX4Q4Ie6NS2uOjVezjdHKyXueGSXeAP4JvN8XYFLl4vkmKrAqvdzSmoSecDauaVgSw27XjQVnWK2a2lkQNSvthuwbkud9EeNpsEXVb5U1qIn3NZMXgyIzYk9YLpmDSVc5OrAsU-AFh2kpu4UBnENsKaK24_9e9nEC83yWJM1WOWRxIUVIzNYZLJan9s_5ao8jr_0REbaop78YJyiFHBwHkRps3SeTaIfeVdm9LuoNl6aG-uwIzL7HuVGf9E_SSEDQ3XkyUccCT1g-eBShD08Tai&amp;session_state=d977724e-9b34-4cbc-9fea-a1ed601be702#</code></pre></div>
 <p>Lets try to exchange it:</p>
-<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-X</span> POST <span class="token parameter variable">-H</span> <span class="token string">"Content-Type: application/x-www-form-urlencoded"</span> <span class="token string">"https://login.microsoftonline.com/695e64b5-2d13-4ea8-bb11-a6fda2d60c41/oauth2/v2.0/token"</span> <span class="token parameter variable">-d</span> <span class="token string">"code=0.AR8AtWReaRMtqE67Eab9otYMQbjxQxVAGHRFqkQuODzdJlKFAJw.AgABAAIAAAAtyolDObpQQ5VtlI4uGjEPAgDs_wUA9P9_axhpe6eLGXQU4bdMlaQBZdy7S0ZKStzY6JDORF4QDnx5rjfkNu7rE2hmkyTQQ8zQ_gVsvB4V7p3mAgjuymJAj2YOgvZHXIxnoOK_h3PYN9kpdZEjc27EZKC74HtFfjCiG1zBa_vbe9rz6KQiemuKOeuTQrKMAwMsnl7D4maQvtMi_mdYaHlSQrfliZaCbG_zankxv5suj5FG8ZrS6b5XofqwxnUVXfWyQEX2_spEOpt2grlRvcr4oyj3Y0pybhDn3TiqQjDEIxwaEJb7ixk0CGTWLl0JdCHNsTwi1x7oLWj7qukki4HAMNPolKvbicmgu0zswaynuuYg16jINF9uElSMdAzTShmT-k1rfDWWWrFnpB_TCFH3TGb5c3WRM0Iek1ZKtjaNBRn097fJjYk272lfOwTzn8SmbWrL1YAzvkSub6PBDaCoZC59bT2NQmTJuYiFS4lxzzX4Q4Ie6NS2uOjVezjdHKyXueGSXeAP4JvN8XYFLl4vkmKrAqvdzSmoSecDauaVgSw27XjQVnWK2a2lkQNSvthuwbkud9EeNpsEXVb5U1qIn3NZMXgyIzYk9YLpmDSVc5OrAsU-AFh2kpu4UBnENsKaK24_9e9nEC83yWJM1WOWRxIUVIzNYZLJan9s_5ao8jr_0REbaop78YJyiFHBwHkRps3SeTaIfeVdm9LuoNl6aG-uwIzL7HuVGf9E_SSEDQ3XkyUccCT1g-eBShD08Tai&amp;client_id=1543f1b8-1840-4574-aa44-2e383cdd2652&amp;client_secret=2nM8Q~tUEQZypbeJFPMumdh1TVYMORZdebn-ibdA&amp;grant_type=authorization_code&amp;redirect_uri=http://localhost"</span></code></pre></div>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-X</span> POST <span class="token parameter variable">-H</span> <span class="token string">"Content-Type: application/x-www-form-urlencoded"</span> <span class="token string">"https://login.microsoftonline.com/695e64b5-2d13-4ea8-bb11-a6fda2d60c41/oauth2/v2.0/token"</span> <span class="token parameter variable">-d</span> <span class="token string">"code=0.AR8AtWReaRMtqE67Eab9otYMQbjxQxVAGHRFqkQuODzdJlKFAJw.AgABAAIAAAAtyolDObpQQ5VtlI4uGjEPAgDs_wUA9P9_axhpe6eLGXQU4bdMlaQBZdy7S0ZKStzY6JDORF4QDnx5rjfkNu7rE2hmkyTQQ8zQ_gVsvB4V7p3mAgjuymJAj2YOgvZHXIxnoOK_h3PYN9kpdZEjc27EZKC74HtFfjCiG1zBa_vbe9rz6KQiemuKOeuTQrKMAwMsnl7D4maQvtMi_mdYaHlSQrfliZaCbG_zankxv5suj5FG8ZrS6b5XofqwxnUVXfWyQEX2_spEOpt2grlRvcr4oyj3Y0pybhDn3TiqQjDEIxwaEJb7ixk0CGTWLl0JdCHNsTwi1x7oLWj7qukki4HAMNPolKvbicmgu0zswaynuuYg16jINF9uElSMdAzTShmT-k1rfDWWWrFnpB_TCFH3TGb5c3WRM0Iek1ZKtjaNBRn097fJjYk272lfOwTzn8SmbWrL1YAzvkSub6PBDaCoZC59bT2NQmTJuYiFS4lxzzX4Q4Ie6NS2uOjVezjdHKyXueGSXeAP4JvN8XYFLl4vkmKrAqvdzSmoSecDauaVgSw27XjQVnWK2a2lkQNSvthuwbkud9EeNpsEXVb5U1qIn3NZMXgyIzYk9YLpmDSVc5OrAsU-AFh2kpu4UBnENsKaK24_9e9nEC83yWJM1WOWRxIUVIzNYZLJan9s_5ao8jr_0REbaop78YJyiFHBwHkRps3SeTaIfeVdm9LuoNl6aG-uwIzL7HuVGf9E_SSEDQ3XkyUccCT1g-eBShD08Tai&amp;client_id=xxx&amp;client_secret=xxx&amp;grant_type=authorization_code&amp;redirect_uri=http://localhost"</span></code></pre></div>
 <p>and the response (everything worked like a charm, everything is done by spec, just changed identifiers and secrets)</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-  <span class="token property">"token_type"</span><span class="token operator">:</span><span class="token string">"Bearer"</span><span class="token punctuation">,</span>
-  <span class="token property">"scope"</span><span class="token operator">:</span><span class="token string">"email openid profile"</span><span class="token punctuation">,</span>
-  <span class="token property">"expires_in"</span><span class="token operator">:</span><span class="token number">5160</span><span class="token punctuation">,</span>
-  <span class="token property">"ext_expires_in"</span><span class="token operator">:</span><span class="token number">5160</span><span class="token punctuation">,</span>
-  <span class="token property">"access_token"</span><span class="token operator">:</span><span class="token string">"eyJ0eXAiOiJKV1QiLCJub....."</span><span class="token punctuation">,</span>
-  <span class="token property">"refresh_token"</span><span class="token operator">:</span><span class="token string">"0.AR8AtWReaRMtqE67Eab...."</span><span class="token punctuation">,</span>
-  <span class="token property">"id_token"</span><span class="token operator">:</span><span class="token string">"eyJ0eXAiOiJKV1QiLCJhbGciOi...."</span>
+  <span class="token property">"token_type"</span><span class="token operator">:</span> <span class="token string">"Bearer"</span><span class="token punctuation">,</span>
+  <span class="token property">"scope"</span><span class="token operator">:</span> <span class="token string">"email openid profile"</span><span class="token punctuation">,</span>
+  <span class="token property">"expires_in"</span><span class="token operator">:</span> <span class="token number">5160</span><span class="token punctuation">,</span>
+  <span class="token property">"ext_expires_in"</span><span class="token operator">:</span> <span class="token number">5160</span><span class="token punctuation">,</span>
+  <span class="token property">"access_token"</span><span class="token operator">:</span> <span class="token string">"eyJ0eXAiOiJKV1QiLCJub....."</span><span class="token punctuation">,</span>
+  <span class="token property">"refresh_token"</span><span class="token operator">:</span> <span class="token string">"0.AR8AtWReaRMtqE67Eab...."</span><span class="token punctuation">,</span>
+  <span class="token property">"id_token"</span><span class="token operator">:</span> <span class="token string">"eyJ0eXAiOiJKV1QiLCJhbGciOi...."</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>In response both <code class="language-text">access_token</code> and <code class="language-text">id_token</code> are JWT, <code class="language-text">refresh_token</code> is something else</p>
 <p><code class="language-text">access_token</code> and <code class="language-text">id_token</code> have expiration of 1hr</p>
@@ -3224,16 +3221,16 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 </blockquote>
 <p>Note: in GitHub for example refresh tokens are infinite if I remeber correct and in Slack only 24hr, so it is something that requires additional research, aka in case of possibility to revoke refresh token it should be fine for it to be valid forewer probably but having limitation will require user from time to time to relogin and as a result confirm grant</p>
 <p>Accorting to oauth spec I should be able to ask for fresh tokens like so:</p>
-<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-X</span> POST <span class="token parameter variable">-H</span> <span class="token string">"Content-Type: application/x-www-form-urlencoded"</span> <span class="token string">"https://login.microsoftonline.com/695e64b5-2d13-4ea8-bb11-a6fda2d60c41/oauth2/v2.0/token"</span> <span class="token parameter variable">-d</span> <span class="token string">"grant_type=refresh_token&amp;client_id=1543f1b8-1840-4574-aa44-2e383cdd2652&amp;client_secret=2nM8Q~tUEQZypbeJFPMumdh1TVYMORZdebn-ibdA&amp;refresh_token=0.AR8AtWReaRMtqE...."</span></code></pre></div>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-X</span> POST <span class="token parameter variable">-H</span> <span class="token string">"Content-Type: application/x-www-form-urlencoded"</span> <span class="token string">"https://login.microsoftonline.com/695e64b5-2d13-4ea8-bb11-a6fda2d60c41/oauth2/v2.0/token"</span> <span class="token parameter variable">-d</span> <span class="token string">"grant_type=refresh_token&amp;client_id=xxx&amp;client_secret=xxx&amp;refresh_token=0.AR8AtWReaRMtqE...."</span></code></pre></div>
 <p>gives</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-  <span class="token property">"token_type"</span><span class="token operator">:</span><span class="token string">"Bearer"</span><span class="token punctuation">,</span>
-  <span class="token property">"scope"</span><span class="token operator">:</span><span class="token string">"email openid profile"</span><span class="token punctuation">,</span>
-  <span class="token property">"expires_in"</span><span class="token operator">:</span><span class="token number">4356</span><span class="token punctuation">,</span>
-  <span class="token property">"ext_expires_in"</span><span class="token operator">:</span><span class="token number">4356</span><span class="token punctuation">,</span>
-  <span class="token property">"access_token"</span><span class="token operator">:</span><span class="token string">"eyJ0eXAiOiJKV1QiLCJ...."</span><span class="token punctuation">,</span>
-  <span class="token property">"refresh_token"</span><span class="token operator">:</span><span class="token string">"0.AR8AtWReaRMtqE67Eab9otYMQ..."</span><span class="token punctuation">,</span>
-  <span class="token property">"id_token"</span><span class="token operator">:</span><span class="token string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJS..."</span>
+  <span class="token property">"token_type"</span><span class="token operator">:</span> <span class="token string">"Bearer"</span><span class="token punctuation">,</span>
+  <span class="token property">"scope"</span><span class="token operator">:</span> <span class="token string">"email openid profile"</span><span class="token punctuation">,</span>
+  <span class="token property">"expires_in"</span><span class="token operator">:</span> <span class="token number">4356</span><span class="token punctuation">,</span>
+  <span class="token property">"ext_expires_in"</span><span class="token operator">:</span> <span class="token number">4356</span><span class="token punctuation">,</span>
+  <span class="token property">"access_token"</span><span class="token operator">:</span> <span class="token string">"eyJ0eXAiOiJKV1QiLCJ...."</span><span class="token punctuation">,</span>
+  <span class="token property">"refresh_token"</span><span class="token operator">:</span> <span class="token string">"0.AR8AtWReaRMtqE67Eab9otYMQ..."</span><span class="token punctuation">,</span>
+  <span class="token property">"id_token"</span><span class="token operator">:</span> <span class="token string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJS..."</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>Notes:</p>
 <ul>
@@ -3242,10 +3239,10 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 <li>in all responses i have cut long string just for readability nothing really secret there, plus all apps, secrets, client_id are deleted before publishing</li>
 </ul>
 <h2>Refresh tokens and SPA</h2>
-<p>If  we have SPA we should use implicit flow, but implicit flow according to spec should not return refresh token</p>
+<p>If we have SPA we should use implicit flow, but implicit flow according to spec should not return refresh token</p>
 <p>Then the question is - if token is only for 1hr - what should we do to not ask user rologin each hour?</p>
 <p>So lets see what will Microsoft do for implicit flow</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://login.microsoftonline.com/695e64b5-2d13-4ea8-bb11-a6fda2d60c41/oauth2/v2.0/authorize?response_type=token&amp;client_id=1543f1b8-1840-4574-aa44-2e383cdd2652&amp;redirect_uri=http%3A%2F%2Flocalhost&amp;scope=openid%20email%20profile%20offline_access</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">https://login.microsoftonline.com/695e64b5-2d13-4ea8-bb11-a6fda2d60c41/oauth2/v2.0/authorize?response_type=token&amp;client_id=xxx&amp;redirect_uri=http%3A%2F%2Flocalhost&amp;scope=openid%20email%20profile%20offline_access</code></pre></div>
 <p>Note: you will receive unsupported response type until you enable implicit flow in app settings</p>
 <p>and redirect will be</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">http://localhost/#access_token=eyJ0eXAiOiJKV1QiLCJub2...&amp;token_type=Bearer&amp;expires_in=5242&amp;scope=email+openid+profile&amp;session_state=d977724e-9b34-4cbc-9fea-a1ed601be702</code></pre></div>
@@ -3275,12 +3272,12 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">http://localhost/?code=JGByuAmdYefsj1QxReB77mxAiVkzKFInffrNAGQlV-ptl</code></pre></div>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-X</span> POST <span class="token parameter variable">-H</span> <span class="token string">"Content-Type: application/x-www-form-urlencoded"</span> <span class="token string">"https://rua.eu.auth0.com/oauth/token"</span> <span class="token parameter variable">-d</span> <span class="token string">"code=JGByuAmdYefsj1QxReB77mxAiVkzKFInffrNAGQlV-ptl&amp;client_id=WnRtOqI8xKF4dJCAZQpHWxDc6SrDbyEK&amp;client_secret=rCVNj95iNJX4yAQr5buLwU9TIICQFymRMleDb1WjzIs8F-blKcOQ4J3S_6MYPNDC&amp;grant_type=authorization_code&amp;redirect_uri=http://localhost"</span></code></pre></div>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-  <span class="token property">"access_token"</span><span class="token operator">:</span><span class="token string">"eyJhbGciOiJk..."</span><span class="token punctuation">,</span>
-  <span class="token property">"refresh_token"</span><span class="token operator">:</span><span class="token string">"v1.MRgSDlQ3ThyIq2vrEws16K4eO1n7qt..."</span><span class="token punctuation">,</span>
-  <span class="token property">"id_token"</span><span class="token operator">:</span><span class="token string">"eyJhbGciOiJSUzI1N...."</span><span class="token punctuation">,</span>
-  <span class="token property">"scope"</span><span class="token operator">:</span><span class="token string">"openid offline_access"</span><span class="token punctuation">,</span>
-  <span class="token property">"expires_in"</span><span class="token operator">:</span><span class="token number">86400</span><span class="token punctuation">,</span>
-  <span class="token property">"token_type"</span><span class="token operator">:</span><span class="token string">"Bearer"</span>
+  <span class="token property">"access_token"</span><span class="token operator">:</span> <span class="token string">"eyJhbGciOiJk..."</span><span class="token punctuation">,</span>
+  <span class="token property">"refresh_token"</span><span class="token operator">:</span> <span class="token string">"v1.MRgSDlQ3ThyIq2vrEws16K4eO1n7qt..."</span><span class="token punctuation">,</span>
+  <span class="token property">"id_token"</span><span class="token operator">:</span> <span class="token string">"eyJhbGciOiJSUzI1N...."</span><span class="token punctuation">,</span>
+  <span class="token property">"scope"</span><span class="token operator">:</span> <span class="token string">"openid offline_access"</span><span class="token punctuation">,</span>
+  <span class="token property">"expires_in"</span><span class="token operator">:</span> <span class="token number">86400</span><span class="token punctuation">,</span>
+  <span class="token property">"token_type"</span><span class="token operator">:</span> <span class="token string">"Bearer"</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>So far it works the same way as Microsoft, now the question whats about frontend side, e.g. my idea was to create small demo, but really fast I have realized that it does not make any sence because to exchange code to access token we need client secret and we should not expose it to front end</p>
 <p>So we definitelly need take a closer look at PCKE</p>
@@ -4130,4 +4127,4 @@ app<span class="token punctuation">.</span><span class="token function">Run</spa
           >
             window.___chunkMapping="{\"app\":[\"/app-7b20cf6b228554debfd7.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-b8844297d3c889529ffc.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-3e48580cb77c5702d170.js\"],\"component---src-pages-search-js\":[\"/component---src-pages-search-js-6dad0a5147a07a75a2ae.js\"],\"component---src-templates-note-js\":[\"/component---src-templates-note-js-ee85ac5e9dc2bec6ab27.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="c3cc0006cbde6b698779";</script><script src="/webpack-runtime-9560853cd379e8e8a915.js" async></script><script src="/framework-d8147c29036dfed63b98.js" async></script><script src="/app-7b20cf6b228554debfd7.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="f1b93304e777fb4dad82";</script><script src="/webpack-runtime-9560853cd379e8e8a915.js" async></script><script src="/framework-d8147c29036dfed63b98.js" async></script><script src="/app-7b20cf6b228554debfd7.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
